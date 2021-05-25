@@ -19,4 +19,4 @@
 9.项目源码链接：1)GitHub: https://github.com/2656307671/-SpingBoot-2.x-Book-CRUD
                2)Gitee码云: https://gitee.com/szh-forever-young/sping-boot-2.x-book-crud
 
-10.项目总结 + 运行效果图：CSDN: szh-forever-young.blog.csdn.net
+10.项目总结 + 运行效果图：CSDN: https://blog.csdn.net/weixin_43823808/article/details/117265486
