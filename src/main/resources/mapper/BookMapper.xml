@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szh.springboot.mapper.BookMapper">
+    <!-- 使用insert、update、delete、select标签编写sql语句 -->
+    <sql id="myBookInfo">
+        bookId,bookName,bookCount,bookDetail
+    </sql>
+
+    <!-- 根据id查询图书信息 -->
+    <select id="selectBookById" resultType="com.szh.springboot.domain.Book">
+        select <include refid="myBookInfo" />
+        from book
+        where bookId=#{bookId}
+    </select>
+
+    <!-- 根据书名查询图书信息 -->
+    <select id="selectBookByName" resultType="com.szh.springboot.domain.Book">
+        select <include refid="myBookInfo" />
+        from book
+        where bookName=#{bookName}
+    </select>
+
+    <!-- 查询所有图书信息 -->
+    <select id="selectAllBook" resultType="com.szh.springboot.domain.Book">
+        select <include refid="myBookInfo" />
+        from book
+    </select>
+
+    <!-- 新增图书 -->
+    <insert id="insertBook" parameterType="com.szh.springboot.domain.Book">
+        insert into book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookName != null">
+                bookName,
+            </if>
+            <if test="bookCount != null">
+                bookCount,
+            </if>
+            <if test="bookDetail != null">
+                bookDetail,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookName != null">
+                #{bookName},
+            </if>
+            <if test="bookCount != null">
+                #{bookCount},
+            </if>
+            <if test="bookDetail != null">
+                #{bookDetail},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新图书 -->
+    <update id="updateBook" parameterType="com.szh.springboot.domain.Book">
+        update book
+        <set>
+            <if test="bookName != null">
+                bookName=#{bookName},
+            </if>
+            <if test="bookCount != null">
+                bookCount=#{bookCount},
+            </if>
+            <if test="bookDetail != null">
+                bookDetail=#{bookDetail},
+            </if>
+        </set>
+        where bookId=#{bookId}
+    </update>
+
+    <!-- 删除图书 -->
+    <delete id="deleteBook" parameterType="java.lang.Integer">
+        delete from book
+        where bookId=#{bookId}
+    </delete>
+
+</mapper>

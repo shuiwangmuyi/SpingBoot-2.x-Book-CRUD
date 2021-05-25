@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/signin.css}" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <form th:method="get" th:action="@{/user/login}">
+        <div class="form-group">
+            <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="144" height="144"/>
+            <h1 class="h3 mb-3 font-weight-normal">个人账号</h1>
+
+<!--            <p style="color: red" th:text="${loginMsg}"></p>-->
+            <label class="sr-only">账号</label>
+            <input th:type="text" th:name="username" class="form-control" placeholder="请输入账号" style="width: 300px"/><br/>
+
+            <label class="sr-only">密码</label>
+            <input th:type="password" th:name="password" class="form-control" placeholder="请输入密码" style="width: 300px"/><br/>
+
+            <button th:type="submit" class="btn btn-lg btn-primary btn-block" style="width: 300px">登录</button><br/>
+
+            <a class="btn btn-lg btn-primary btn-block" th:href="@{/user/toRegister}" style="width: 300px">注册</a>
+
+            <p class="mt-5 mb-3 text-muted" style="font-size: 16px">&copy;2020-2021</p>
+        </div>
+    </form>
+</body>
+</html>

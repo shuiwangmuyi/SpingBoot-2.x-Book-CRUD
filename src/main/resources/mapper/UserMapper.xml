@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szh.springboot.mapper.UserMapper">
+    <!-- 使用insert、update、delete、select标签编写sql语句 -->
+    <sql id="myUserInfo">
+        userId,username,password
+    </sql>
+
+    <!-- 根据用户名查询用户信息 -->
+    <select id="selectUserByName" resultType="com.szh.springboot.domain.User">
+        select <include refid="myUserInfo"/>
+        from user
+        where username=#{username}
+    </select>
+
+    <!-- 查询所有用户信息 -->
+    <select id="selectAllUser" resultType="com.szh.springboot.domain.User">
+        select <include refid="myUserInfo"/>
+        from user
+    </select>
+
+    <!-- 新增用户 -->
+    <insert id="insertUser" parameterType="com.szh.springboot.domain.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="com.szh.springboot.domain.User">
+        update user
+        <set>
+            <if test="username != null">
+                username=#{username},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+        </set>
+        where userId=#{userId}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user
+        where userId=#{userId}
+    </delete>
+
+</mapper>

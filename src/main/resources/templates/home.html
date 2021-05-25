@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url(../img/book.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <br/><br/>
+    <div class="container">
+        <div>
+            <div class="pull-left">
+                <a th:href="@{/book/toAddBook}" class="btn btn btn-info">新增图书</a>
+                <a th:href="@{/book/home}" class="btn btn btn-info">显示全部图书</a>
+            </div>
+            <div class="col-md-8 column" th:align="center">
+                <form class="form-inline" th:align="center" th:action="@{/book/queryBookByName}" th:method="get">
+                    <input th:type="text" th:name="bookName" class="form-control" placeholder="请输入图书名称" style="width: 300px"/>
+                    <input th:type="submit" class="btn btn btn-info" value="查询"/>
+                </form>
+            </div>
+            <div class="pull-right">
+                <a th:href="@{/user/logout}" class="btn btn btn-warning">账号退出</a>
+            </div>
+        </div>
+        <br/><br/>
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>图书编号</th>
+                        <th>图书名称</th>
+                        <th>图书数量</th>
+                        <th>图书简介</th>
+                        <th>图书操作</th>
+                    </tr>
+                </thead>
+                <tbody th:each="book : ${bookList}">
+                    <tr>
+                        <td th:text="${book.bookId}"></td>
+                        <td th:text="${book.bookName}"></td>
+                        <td th:text="${book.bookCount}"></td>
+                        <td th:text="${book.bookDetail}"></td>
+                        <td>
+                            <a th:href="@{|/book/toUpdateBook/${book.bookId}|}" class="btn btn btn-info">更新</a>
+                            <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                删除<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a th:href="@{|/book/deleteBook/${book.bookId}|}"  class="btn btn btn-danger">确认删除</a></li>
+                                <li><a th:href="@{|/book/home|}" class="btn btn btn-primary">撤销操作</a></li>
+                            </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

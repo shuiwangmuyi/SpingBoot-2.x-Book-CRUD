@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>更新图书</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        img {
+            width: 1536px;
+            height: 722px;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <br/><br/>
+    <div class="container">
+        <img th:src="@{/img/book2.jpg}" alt=""/>
+        <form th:action="@{/book/updateBook}" th:method="post">
+            <input th:type="hidden" th:name="bookId" th:value="${book.bookId}" />
+            <div class="form-group col-lg-8">
+                <label>图书编号</label>
+                <input th:type="text" class="form-control" id="disabledInput" th:placeholder="|${book.bookId} (禁止修改...)|" disabled />
+            </div>
+
+            <div class="form-group has-success col-lg-8">
+                <label class="control-label" for="inputSuccess">图书名称</label>
+                <input th:type="text" th:name="bookName" th:value="${book.bookName}" class="form-control" id="inputSuccess" required/>
+            </div>
+
+            <div class="form-group has-success col-lg-8">
+                <label class="control-label" for="inputSuccess">图书数量</label>
+                <input th:type="text" th:name="bookCount" th:value="${book.bookCount}" class="form-control" required/>
+            </div>
+
+            <div class="form-group has-success col-lg-8">
+                <label class="control-label" for="inputSuccess">图书简介</label>
+                <input th:type="text" th:name="bookDetail" th:value="${book.bookDetail}" class="form-control" required/>
+            </div>
+
+            <div class="form-group col-lg-8">
+                <input th:type="submit" th:value="确认更新" class="form-group form-control btn-info" style="width: 360px;height: 35px;float: left"/>
+            </div>
+
+        </form>
+        <button class="btn btn-danger col-lg-4" th:onclick="goBack()" style="width: 365px;height: 35px;position: absolute;margin-left: -380px;top: 336px">撤销操作</button>
+    </div>
+    <script type="text/javascript">
+        function goBack() {
+            window.location.href='/springboot_crud/book/home';
+        }
+    </script>
+</body>
+</html>
