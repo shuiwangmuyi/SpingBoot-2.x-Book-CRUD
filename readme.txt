@@ -16,7 +16,7 @@
 
 8.项目开发工具：IDEA + Navicat
 
-9.项目源码链接：1)GitHub: https://github.com/2656307671/
-               2)Gitee码云: https://gitee.com/szh-forever-young/
+9.项目源码链接：1)GitHub: https://github.com/2656307671/-SpingBoot-2.x-Book-CRUD
+               2)Gitee码云: https://gitee.com/szh-forever-young/sping-boot-2.x-book-crud
 
 10.项目总结 + 运行效果图：CSDN: szh-forever-young.blog.csdn.net
